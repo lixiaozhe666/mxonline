@@ -1,3 +1,4 @@
+# _*_ encoding:utf-8 _*_
 """MxOnline URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -14,12 +15,14 @@ Including another URLconf
     2. Import the include() function: from django.conf.urls import url, include
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-from django.conf.urls import url,include
 
+from django.conf.urls import url,include
+from django.views.static import serve
 from django.views.generic import TemplateView
 import xadmin
 from users.views import LoginView,RegisterView,UserActivateView,ForgetPwdView,ResetPasswordView,Modify_pwdView
 from organization.views import TestView
+from .settings import MEDIA_ROOT
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
@@ -33,5 +36,6 @@ urlpatterns = [
     url(r'^reset/(?P<activate_code>.*)/$', ResetPasswordView.as_view(), name='reset'),
     url(r'^modify/$', Modify_pwdView.as_view(), name='modify'),
     url(r'^ora/$', TestView.as_view(), name='ora'),
-
+    # 配置上传文件的访问处理函数
+    url(r'^media/(?P<path>.*)$',serve,{"document_root": MEDIA_ROOT})
 ]
