@@ -30,6 +30,8 @@ class Organization(models.Model):
     fav_nums = models.IntegerField(default=0, verbose_name=u'收藏数')
     image = models.ImageField(upload_to='org/%Y/%m', verbose_name=u'封面图', max_length=100)
     address = models.CharField(max_length=150, verbose_name=u'地址')
+    student = models.IntegerField(default=0, verbose_name=u'学习人数')
+    course_num = models.IntegerField(default=0, verbose_name=u'课程数')
     add_time = models.DateTimeField(default=datetime.now, verbose_name=u'添加时间')
     city = models.ForeignKey(CityDict, verbose_name=u'所在地')
 
