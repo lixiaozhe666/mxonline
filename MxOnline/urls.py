@@ -24,6 +24,7 @@ from users.views import LoginView,RegisterView,UserActivateView,ForgetPwdView,Re
 from organization.views import TestView
 from .settings import MEDIA_ROOT
 
+
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
     url('^$',TemplateView.as_view(template_name='index.html'),name = 'index'),
@@ -35,7 +36,7 @@ urlpatterns = [
     url(r'^forget/$',ForgetPwdView.as_view(),name='forget'),
     url(r'^reset/(?P<activate_code>.*)/$', ResetPasswordView.as_view(), name='reset'),
     url(r'^modify/$', Modify_pwdView.as_view(), name='modify'),
-    url(r'^ora/$', TestView.as_view(), name='ora'),
+    url(r'^ora/', include('organization.urls',namespace='org')),
     # 配置上传文件的访问处理函数
     url(r'^media/(?P<path>.*)$',serve,{"document_root": MEDIA_ROOT})
 ]
