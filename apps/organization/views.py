@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from .models import Organization,CityDict
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from operation.forms import UserAskForm
+import json
 # Create your views here.
 
 
@@ -55,8 +56,13 @@ class AddAskView(View):
         useraskForm = UserAskForm(request.POST)
         if useraskForm.is_valid():
             userask = useraskForm.save(commit=True)
-            return HttpResponse("{'status':'success'}",content_type='application/json')
+            # return HttpResponse('我喜欢季慧新')
+            # return HttpResponse("{'msg':'我喜欢季慧新'}", content_type='application/json')
+            resp = {'status': 'success', 'detail123': '我喜欢季慧新'}
+            return HttpResponse(json.dumps(resp), content_type="application/json")
         else:
-            return HttpResponse("{'status':'fail' , 'msg':'111'}",content_type='application/json')
+            # return HttpResponse("{'status':'fail' , 'msg':'111'}",content_type='application/json')
+            resp = {'status': 'fail', 'msg': '我喜欢季慧新'}
+            return HttpResponse(json.dumps(resp), content_type="application/json")
 
 
