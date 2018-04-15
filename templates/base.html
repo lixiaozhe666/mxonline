@@ -146,15 +146,7 @@
                         $('#jsCompanyTips').html(data.msg)
                     }
                 },
-                complete: function(data) {
-                    alert(data.box)
-                    if(data.status == 'success'){
-                        $('#jsStayForm')[0].reset();
-                        alert("提交成功")
-                    }else if(data.status == 'fail'){
-                        $('#jsCompanyTips').html(data.msg)
-                    }
-                },
+
             });
         });
     })
